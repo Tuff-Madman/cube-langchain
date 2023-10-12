@@ -24,10 +24,8 @@ def log(message):
 
 
 def check_input(question: str):
-    if question == "":
+    if not question:
         raise Exception("Please enter a question.")
-    else:
-        pass
 
 
 def init_vectorstore() -> VectorStore:
@@ -41,8 +39,7 @@ def init_vectorstore() -> VectorStore:
 
 def create_vectorstore(documents: List[Document]) -> VectorStore:
     embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(documents, embeddings)
-    return vectorstore
+    return FAISS.from_documents(documents, embeddings)
 
 
 _postgres_prompt = """\
